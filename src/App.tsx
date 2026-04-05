@@ -1246,7 +1246,7 @@ const Footer: React.FC = () => (
           }}
         >
           <img
-            src="/site_logo_2.svg"
+            src="/logo.svg"
             alt="Stalios"
             style={{ height: 28, width: 28 }}
           />
