@@ -40,7 +40,9 @@ const Navbar: React.FC = () => {
         left: 0,
         right: 0,
         zIndex: 50,
-        borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
+        borderBottom: scrolled
+          ? "1px solid var(--border)"
+          : "1px solid transparent",
         background: scrolled ? "rgba(10,10,10,0.92)" : "transparent",
         backdropFilter: scrolled ? "blur(12px)" : "none",
         transition: "all 0.3s ease",
@@ -60,9 +62,18 @@ const Navbar: React.FC = () => {
         {/* Logo */}
         <a
           href="#"
-          style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            textDecoration: "none",
+          }}
         >
-          <img src="/site_logo_2.svg" alt="Stalios" style={{ height: 32, width: 32 }} />
+          <img
+            src="/logo.svg"
+            alt="Stalios"
+            style={{ height: 32, width: 32 }}
+          />
           <span
             style={{
               fontSize: 18,
@@ -96,7 +107,9 @@ const Navbar: React.FC = () => {
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.color = "var(--muted)")
+              }
             >
               {l.label}
             </a>
@@ -122,7 +135,9 @@ const Navbar: React.FC = () => {
               transition: "background 0.2s",
             }}
             onMouseEnter={(e) => (e.currentTarget.style.background = "#ffaa22")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "var(--primary)")}
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.background = "var(--primary)")
+            }
           >
             Launch App
             <RiExternalLinkLine size={13} />
@@ -275,7 +290,9 @@ const Hero: React.FC = () => (
               transition: "background 0.2s",
             }}
             onMouseEnter={(e) => (e.currentTarget.style.background = "#ffaa22")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "var(--primary)")}
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.background = "var(--primary)")
+            }
           >
             Launch App <RiArrowRightLine size={15} />
           </a>
@@ -335,7 +352,9 @@ const Hero: React.FC = () => (
               >
                 {s.val}
               </div>
-              <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 2 }}>
+              <div
+                style={{ fontSize: 12, color: "var(--muted)", marginTop: 2 }}
+              >
                 {s.label}
               </div>
             </div>
@@ -406,7 +425,10 @@ const Banner: React.FC = () => {
         overflow: "hidden",
       }}
     >
-      <div className="animate-marquee" style={{ display: "inline-flex", gap: 64 }}>
+      <div
+        className="animate-marquee"
+        style={{ display: "inline-flex", gap: 64 }}
+      >
         {items.map((item, i) => (
           <span
             key={i}
@@ -440,19 +462,22 @@ const Products: React.FC = () => {
     {
       icon: <RiGovernmentLine size={20} />,
       name: "Stalios Gov",
-      description: "On-chain proposal creation and voting, weighted by your STA holdings.",
+      description:
+        "On-chain proposal creation and voting, weighted by your STA holdings.",
       status: "Coming soon",
     },
     {
       icon: <RiCoinLine size={20} />,
       name: "Stalios Exchange",
-      description: "Native token swap with reduced fees for STA holders and DAO participants.",
+      description:
+        "Native token swap with reduced fees for STA holders and DAO participants.",
       status: "In development",
     },
     {
       icon: <RiTeamLine size={20} />,
       name: "Stalios Guilds",
-      description: "Organize into working groups, delegate responsibilities, earn rewards.",
+      description:
+        "Organize into working groups, delegate responsibilities, earn rewards.",
       status: "Roadmap",
     },
   ];
@@ -522,7 +547,12 @@ const Products: React.FC = () => {
             <img
               src="/theme.jpg"
               alt="Stalios Chat"
-              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
             />
           </div>
 
@@ -536,7 +566,14 @@ const Products: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                marginBottom: 8,
+              }}
+            >
               <div
                 style={{
                   background: "var(--primary)",
@@ -581,10 +618,10 @@ const Products: React.FC = () => {
                 margin: "0 0 32px",
               }}
             >
-              The first application in the Stalios ecosystem. A token-gated
-              chat platform where your STA holdings determine which rooms you
-              can access. Lorem ipsum dolor sit amet consectetur, community
-              built for builders and governors alike.
+              The first application in the Stalios ecosystem. A token-gated chat
+              platform where your STA holdings determine which rooms you can
+              access. Lorem ipsum dolor sit amet consectetur, community built
+              for builders and governors alike.
             </p>
 
             <ul style={{ listStyle: "none", padding: 0, margin: "0 0 36px" }}>
@@ -628,8 +665,12 @@ const Products: React.FC = () => {
                 letterSpacing: "0.01em",
                 transition: "background 0.2s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "#ffaa22")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "var(--primary)")}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.background = "#ffaa22")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.background = "var(--primary)")
+              }
             >
               Open Chat <RiArrowRightLine size={14} />
             </a>
@@ -659,10 +700,12 @@ const Products: React.FC = () => {
                 transition: "background 0.2s",
               }}
               onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLDivElement).style.background = "var(--surface-2)")
+                ((e.currentTarget as HTMLDivElement).style.background =
+                  "var(--surface-2)")
               }
               onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLDivElement).style.background = "var(--surface-1)")
+                ((e.currentTarget as HTMLDivElement).style.background =
+                  "var(--surface-1)")
               }
             >
               <div
@@ -701,7 +744,14 @@ const Products: React.FC = () => {
               >
                 {p.name}
               </h4>
-              <p style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.6, margin: 0 }}>
+              <p
+                style={{
+                  fontSize: 14,
+                  color: "var(--muted)",
+                  lineHeight: 1.6,
+                  margin: 0,
+                }}
+              >
                 {p.description}
               </p>
             </div>
@@ -845,14 +895,23 @@ const Ecosystem: React.FC = () => {
       label: "DAO Chat",
       requirement: "Hold 1 STA",
       icon: <RiShieldLine size={18} />,
-      perks: ["All General perks", "DAO governance channel", "Vote on proposals"],
+      perks: [
+        "All General perks",
+        "DAO governance channel",
+        "Vote on proposals",
+      ],
       highlight: true,
     },
     {
       label: "Builders Room",
       requirement: "Hold 100 STA",
       icon: <RiLockLine size={18} />,
-      perks: ["All DAO perks", "Direct builder access", "Early product previews", "Priority support"],
+      perks: [
+        "All DAO perks",
+        "Direct builder access",
+        "Early product previews",
+        "Priority support",
+      ],
     },
   ];
 
@@ -908,8 +967,8 @@ const Ecosystem: React.FC = () => {
               margin: 0,
             }}
           >
-            The Stalios ecosystem is built around token-weighted access.
-            The more STA you hold, the deeper you go.
+            The Stalios ecosystem is built around token-weighted access. The
+            more STA you hold, the deeper you go.
           </p>
         </div>
 
@@ -929,7 +988,9 @@ const Ecosystem: React.FC = () => {
             <div
               key={t.label}
               style={{
-                background: t.highlight ? "var(--surface-2)" : "var(--surface-1)",
+                background: t.highlight
+                  ? "var(--surface-2)"
+                  : "var(--surface-1)",
                 padding: "40px 36px",
                 position: "relative",
               }}
@@ -1077,7 +1138,9 @@ const Community: React.FC = () => (
               transition: "background 0.2s",
             }}
             onMouseEnter={(e) => (e.currentTarget.style.background = "#ffaa22")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "var(--primary)")}
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.background = "var(--primary)")
+            }
           >
             Join the DAO <RiArrowRightLine size={14} />
           </a>
@@ -1173,15 +1236,40 @@ const Footer: React.FC = () => (
     >
       {/* Brand */}
       <div style={{ maxWidth: 280 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-          <img src="/site_logo_2.svg" alt="Stalios" style={{ height: 28, width: 28 }} />
-          <span style={{ fontSize: 16, fontWeight: 700, color: "#fff", letterSpacing: "-0.02em" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            marginBottom: 16,
+          }}
+        >
+          <img
+            src="/logo.svg"
+            alt="Stalios"
+            style={{ height: 28, width: 28 }}
+          />
+          <span
+            style={{
+              fontSize: 16,
+              fontWeight: 700,
+              color: "#fff",
+              letterSpacing: "-0.02em",
+            }}
+          >
             Stalios
           </span>
         </div>
-        <p style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.7, margin: 0 }}>
-          A DAO-powered ecosystem for builders, governors, and community members.
-          Build. Connect. Own.
+        <p
+          style={{
+            fontSize: 13,
+            color: "var(--muted)",
+            lineHeight: 1.7,
+            margin: 0,
+          }}
+        >
+          A DAO-powered ecosystem for builders, governors, and community
+          members. Build. Connect. Own.
         </p>
       </div>
 
@@ -1189,7 +1277,12 @@ const Footer: React.FC = () => (
       {[
         {
           heading: "Products",
-          links: ["Stalios Chat", "Stalios Gov", "Stalios Exchange", "Stalios Guilds"],
+          links: [
+            "Stalios Chat",
+            "Stalios Gov",
+            "Stalios Exchange",
+            "Stalios Guilds",
+          ],
         },
         {
           heading: "Governance",
@@ -1226,7 +1319,9 @@ const Footer: React.FC = () => (
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.color = "var(--muted)")
+              }
             >
               {l}
             </a>
@@ -1249,7 +1344,7 @@ const Footer: React.FC = () => (
       }}
     >
       <span style={{ fontSize: 12, color: "var(--muted-2)" }}>
-        © 2024 Stalios DAO. All rights reserved.
+        © 2026 Stalios DAO. All rights reserved.
       </span>
       <div style={{ display: "flex", gap: 24 }}>
         {["Privacy Policy", "Terms of Service", "Token Disclaimer"].map((l) => (
@@ -1263,7 +1358,9 @@ const Footer: React.FC = () => (
               transition: "color 0.2s",
             }}
             onMouseEnter={(e) => (e.currentTarget.style.color = "var(--muted)")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted-2)")}
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.color = "var(--muted-2)")
+            }
           >
             {l}
           </a>
