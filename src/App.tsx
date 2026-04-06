@@ -119,7 +119,7 @@ const Navbar: React.FC = () => {
         {/* CTA */}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <a
-            href="https://app.stalios.com"
+            href="https://chat.stalios.com"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -274,7 +274,7 @@ const Hero: React.FC = () => (
           style={{ display: "flex", gap: 12, flexWrap: "wrap" }}
         >
           <a
-            href="https://app.stalios.com"
+            href="https://chat.stalios.com"
             style={{
               display: "inline-flex",
               alignItems: "center",
