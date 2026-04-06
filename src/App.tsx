@@ -1187,9 +1187,10 @@ const Community: React.FC = () => (
         }}
       >
         {[
-          { val: "100%", label: "On-chain governance" },
+          { val: "50%", label: "On-chain governance" },
           { val: "STA", label: "Governance token" },
-          { val: "0%", label: "VC allocation" },
+          { val: "20%", label: "VC allocation" },
+          { val: "30%", label: "Community Ownership" },
         ].map((s) => (
           <div
             key={s.label}
@@ -1278,18 +1279,17 @@ const Footer: React.FC = () => (
           heading: "Products",
           links: [
             "Stalios Chat",
-            "Stalios Gov",
-            "Stalios Exchange",
+            "Stalios Chat Room",
             "Stalios Guilds",
           ],
         },
         {
-          heading: "Governance",
-          links: ["Proposals", "Voting", "Treasury", "Forum"],
-        },
-        {
           heading: "Resources",
           links: ["Documentation", "Whitepaper", "GitHub", "Brand Kit"],
+        },
+        {
+          heading: "Community",
+          links: ["Discord", "Twitter", "Telegram", "Forum"],
         },
       ].map((col) => (
         <div key={col.heading}>
