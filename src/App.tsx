@@ -468,9 +468,9 @@ const Products: React.FC = () => {
     },
     {
       icon: <RiCoinLine size={20} />,
-      name: "Stalios Exchange",
+      name: "Stalios Chat Room",
       description:
-        "Native token swap with reduced fees for STA holders and DAO participants.",
+        "A token-gated chat room for STA holders and DAO participants.",
       status: "In development",
     },
     {
