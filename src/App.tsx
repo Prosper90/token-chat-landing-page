@@ -1190,7 +1190,6 @@ const Community: React.FC = () => (
           { val: "100%", label: "On-chain governance" },
           { val: "STA", label: "Governance token" },
           { val: "0%", label: "VC allocation" },
-          { val: "Open", label: "Source code" },
         ].map((s) => (
           <div
             key={s.label}
