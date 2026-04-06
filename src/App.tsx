@@ -1058,8 +1058,7 @@ const Community: React.FC = () => (
         >
           Stalios is not a platform you use — it's a protocol you own. Every
           product decision, fee structure, and roadmap item is subject to
-          governance. Lorem ipsum dolor sit amet consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          governance.
         </p>
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
           <a
