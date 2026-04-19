@@ -6,13 +6,16 @@ import {
   RiLockLine,
   RiTeamLine,
   RiGovernmentLine,
-  RiCoinLine,
   RiMessage3Line,
   RiMenuLine,
   RiCloseLine,
   RiExternalLinkLine,
   RiArrowDownLine,
+  RiLineChartLine,
+  RiRocketLine,
 } from "react-icons/ri";
+
+const CHAT_URL = "https://chat.stalios.com/";
 
 /* ─── Navbar ─────────────────────────────────────────────────── */
 const Navbar: React.FC = () => {
@@ -59,7 +62,6 @@ const Navbar: React.FC = () => {
           justifyContent: "space-between",
         }}
       >
-        {/* Logo */}
         <a
           href="#"
           style={{
@@ -69,11 +71,7 @@ const Navbar: React.FC = () => {
             textDecoration: "none",
           }}
         >
-          <img
-            src="/logo.svg"
-            alt="Stalios"
-            style={{ height: 32, width: 32 }}
-          />
+          <img src="/logo.svg" alt="Stalios" style={{ height: 32, width: 32 }} />
           <span
             style={{
               fontSize: 18,
@@ -86,13 +84,8 @@ const Navbar: React.FC = () => {
           </span>
         </a>
 
-        {/* Desktop links */}
         <div
-          style={{
-            display: "flex",
-            gap: 32,
-            alignItems: "center",
-          }}
+          style={{ display: "flex", gap: 32, alignItems: "center" }}
           className="hidden-mobile"
         >
           {links.map((l) => (
@@ -107,19 +100,18 @@ const Navbar: React.FC = () => {
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = "var(--muted)")
-              }
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
             >
               {l.label}
             </a>
           ))}
         </div>
 
-        {/* CTA */}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <a
-            href="#"
+            href={CHAT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -159,7 +151,6 @@ const Navbar: React.FC = () => {
         </div>
       </nav>
 
-      {/* Mobile menu */}
       {menuOpen && (
         <div
           style={{
@@ -193,212 +184,279 @@ const Navbar: React.FC = () => {
 };
 
 /* ─── Hero ───────────────────────────────────────────────────── */
-const Hero: React.FC = () => (
-  <section
-    style={{
-      minHeight: "100vh",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      padding: "120px 24px 80px",
-      maxWidth: 1200,
-      margin: "0 auto",
-    }}
-  >
-    {/* Eyebrow */}
-    <div className="animate-fade-in" style={{ marginBottom: 28 }}>
-      <span
+type PreviewTab = "chat" | "dashboard" | "presale";
+
+const Hero: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<PreviewTab>("chat");
+
+  const tabs: { id: PreviewTab; label: string; src: string }[] = [
+    { id: "chat", label: "Chat", src: "/theme.jpg" },
+    { id: "dashboard", label: "Dashboard", src: "/whatDashboardShouldLoogLike.jpg" },
+    { id: "presale", label: "Presale", src: "/whatPresaleShouldLooklike.jpg" },
+  ];
+
+  return (
+    <section
+      style={{
+        background: `
+          radial-gradient(ellipse 90% 70% at 75% 35%, rgba(254,144,1,0.13) 0%, transparent 65%),
+          radial-gradient(ellipse 55% 65% at 10% 80%, rgba(240,89,0,0.09) 0%, transparent 55%),
+          radial-gradient(ellipse 40% 50% at 50% 0%, rgba(254,144,1,0.05) 0%, transparent 50%),
+          #0a0a0a
+        `,
+        minHeight: "100vh",
+      }}
+    >
+      <div
         style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 8,
-          border: "1px solid var(--border)",
-          borderRadius: 4,
-          padding: "5px 12px",
-          fontSize: 12,
-          fontWeight: 600,
-          color: "var(--primary)",
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
+          maxWidth: 1200,
+          margin: "0 auto",
+          padding: "120px 24px 80px",
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
         }}
       >
-        <RiShieldLine size={13} />
-        DAO Ecosystem · Token-Gated Access
-      </span>
-    </div>
-
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: 64,
-        alignItems: "center",
-      }}
-      className="hero-grid"
-    >
-      {/* Left */}
-      <div>
-        <h1
-          className="animate-fade-in-up animate-delay-100"
-          style={{
-            fontSize: "clamp(40px, 5vw, 68px)",
-            fontWeight: 800,
-            lineHeight: 1.05,
-            letterSpacing: "-0.03em",
-            margin: "0 0 24px",
-            color: "#fff",
-          }}
-        >
-          Build.
-          <br />
-          Connect.
-          <br />
-          <span style={{ color: "var(--primary)" }}>Own.</span>
-        </h1>
-        <p
-          className="animate-fade-in-up animate-delay-200"
-          style={{
-            fontSize: 17,
-            lineHeight: 1.7,
-            color: "var(--muted)",
-            margin: "0 0 36px",
-            maxWidth: 480,
-          }}
-        >
-          Stalios is a DAO-governed ecosystem where your token holdings
-          determine your access. Participate in governance, join token-gated
-          communities, and co-own the products you use.
-        </p>
-        <div
-          className="animate-fade-in-up animate-delay-300"
-          style={{ display: "flex", gap: 12, flexWrap: "wrap" }}
-        >
-          <a
-            href="#"
+        {/* Eyebrow */}
+        <div className="animate-fade-in" style={{ marginBottom: 28 }}>
+          <span
             style={{
               display: "inline-flex",
               alignItems: "center",
               gap: 8,
-              background: "var(--primary)",
-              color: "#000",
-              fontSize: 14,
-              fontWeight: 700,
-              padding: "12px 24px",
-              borderRadius: 6,
-              textDecoration: "none",
-              letterSpacing: "0.01em",
-              transition: "background 0.2s",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#ffaa22")}
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.background = "var(--primary)")
-            }
-          >
-            Launch App <RiArrowRightLine size={15} />
-          </a>
-          <a
-            href="#products"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              background: "transparent",
-              color: "var(--muted)",
-              fontSize: 14,
-              fontWeight: 500,
-              padding: "12px 24px",
-              borderRadius: 6,
-              textDecoration: "none",
               border: "1px solid var(--border)",
-              transition: "color 0.2s, border-color 0.2s",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = "#fff";
-              e.currentTarget.style.borderColor = "var(--muted-2)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = "var(--muted)";
-              e.currentTarget.style.borderColor = "var(--border)";
+              borderRadius: 4,
+              padding: "5px 12px",
+              fontSize: 12,
+              fontWeight: 600,
+              color: "var(--primary)",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
             }}
           >
-            Explore Products
-          </a>
+            <RiShieldLine size={13} />
+            DAO Ecosystem · Token-Gated Access
+          </span>
         </div>
 
-        {/* Stats row */}
         <div
-          className="animate-fade-in-up animate-delay-400"
           style={{
-            display: "flex",
-            gap: 40,
-            marginTop: 56,
-            paddingTop: 40,
-            borderTop: "1px solid var(--border)",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 64,
+            alignItems: "center",
           }}
+          className="hero-grid"
         >
-          {[
-            { val: "1 STA", label: "Minimum to participate" },
-            { val: "3+", label: "Products launching" },
-            { val: "DAO", label: "Community governed" },
-          ].map((s) => (
-            <div key={s.label}>
-              <div
+          {/* Left */}
+          <div>
+            <h1
+              className="animate-fade-in-up animate-delay-100"
+              style={{
+                fontSize: "clamp(40px, 5vw, 68px)",
+                fontWeight: 800,
+                lineHeight: 1.05,
+                letterSpacing: "-0.03em",
+                margin: "0 0 24px",
+                color: "#fff",
+              }}
+            >
+              Build.
+              <br />
+              Connect.
+              <br />
+              <span style={{ color: "var(--primary)" }}>Own.</span>
+            </h1>
+            <p
+              className="animate-fade-in-up animate-delay-200"
+              style={{
+                fontSize: 17,
+                lineHeight: 1.7,
+                color: "var(--muted)",
+                margin: "0 0 36px",
+                maxWidth: 480,
+              }}
+            >
+              Stalios is a DAO-governed ecosystem where your token holdings
+              determine your access. Participate in governance, join token-gated
+              communities, and co-own the products you use.
+            </p>
+            <div
+              className="animate-fade-in-up animate-delay-300"
+              style={{ display: "flex", gap: 12, flexWrap: "wrap" }}
+            >
+              <a
+                href={CHAT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
-                  fontSize: 22,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  background: "var(--primary)",
+                  color: "#000",
+                  fontSize: 14,
                   fontWeight: 700,
-                  color: "#fff",
-                  letterSpacing: "-0.02em",
+                  padding: "12px 24px",
+                  borderRadius: 6,
+                  textDecoration: "none",
+                  letterSpacing: "0.01em",
+                  transition: "background 0.2s",
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.background = "#ffaa22")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.background = "var(--primary)")
+                }
+              >
+                Launch App <RiArrowRightLine size={15} />
+              </a>
+              <a
+                href="#products"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  background: "transparent",
+                  color: "var(--muted)",
+                  fontSize: 14,
+                  fontWeight: 500,
+                  padding: "12px 24px",
+                  borderRadius: 6,
+                  textDecoration: "none",
+                  border: "1px solid var(--border)",
+                  transition: "color 0.2s, border-color 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "#fff";
+                  e.currentTarget.style.borderColor = "var(--muted-2)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = "var(--muted)";
+                  e.currentTarget.style.borderColor = "var(--border)";
                 }}
               >
-                {s.val}
-              </div>
-              <div
-                style={{ fontSize: 12, color: "var(--muted)", marginTop: 2 }}
-              >
-                {s.label}
-              </div>
+                Explore Products
+              </a>
             </div>
-          ))}
+
+            {/* Stats row */}
+            <div
+              className="animate-fade-in-up animate-delay-400"
+              style={{
+                display: "flex",
+                gap: 40,
+                marginTop: 56,
+                paddingTop: 40,
+                borderTop: "1px solid var(--border)",
+              }}
+            >
+              {[
+                { val: "1 STA", label: "Minimum to participate" },
+                { val: "3+", label: "Products launching" },
+                { val: "DAO", label: "Community governed" },
+              ].map((s) => (
+                <div key={s.label}>
+                  <div
+                    style={{
+                      fontSize: 22,
+                      fontWeight: 700,
+                      color: "#fff",
+                      letterSpacing: "-0.02em",
+                    }}
+                  >
+                    {s.val}
+                  </div>
+                  <div
+                    style={{ fontSize: 12, color: "var(--muted)", marginTop: 2 }}
+                  >
+                    {s.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right — tabbed app preview */}
+          <div className="animate-fade-in animate-delay-200 hero-preview">
+            {/* Tab buttons */}
+            <div
+              style={{
+                display: "flex",
+                gap: 6,
+                marginBottom: 12,
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid var(--border)",
+                borderRadius: 8,
+                padding: 4,
+                width: "fit-content",
+              }}
+            >
+              {tabs.map((t) => (
+                <button
+                  key={t.id}
+                  onClick={() => setActiveTab(t.id)}
+                  style={{
+                    background:
+                      activeTab === t.id ? "var(--primary)" : "transparent",
+                    color: activeTab === t.id ? "#000" : "var(--muted)",
+                    border: "none",
+                    borderRadius: 5,
+                    padding: "6px 16px",
+                    fontSize: 12,
+                    fontWeight: 700,
+                    cursor: "pointer",
+                    letterSpacing: "0.04em",
+                    transition: "background 0.2s, color 0.2s",
+                  }}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Screenshot */}
+            <div
+              style={{
+                border: "1px solid var(--border)",
+                borderRadius: 12,
+                overflow: "hidden",
+                background: "var(--surface-1)",
+              }}
+            >
+              <img
+                key={activeTab}
+                src={tabs.find((t) => t.id === activeTab)!.src}
+                alt={`Stalios ${activeTab} preview`}
+                style={{ width: "100%", display: "block" }}
+              />
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* Right — App preview */}
-      <div
-        className="animate-fade-in animate-delay-200 hero-preview"
-        style={{
-          border: "1px solid var(--border)",
-          borderRadius: 12,
-          overflow: "hidden",
-          background: "var(--surface-1)",
-        }}
-      >
-        <img
-          src="/theme.jpg"
-          alt="Stalios Chat app preview"
-          style={{ width: "100%", display: "block" }}
-        />
+        <a
+          href="#products"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: 64,
+            color: "var(--muted-2)",
+            textDecoration: "none",
+            gap: 6,
+            fontSize: 12,
+            letterSpacing: "0.06em",
+            textTransform: "uppercase",
+          }}
+        >
+          Scroll <RiArrowDownLine size={14} />
+        </a>
       </div>
-    </div>
-
-    <a
-      href="#products"
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 64,
-        color: "var(--muted-2)",
-        textDecoration: "none",
-        gap: 6,
-        fontSize: 12,
-        letterSpacing: "0.06em",
-        textTransform: "uppercase",
-      }}
-    >
-      Scroll <RiArrowDownLine size={14} />
-    </a>
-  </section>
-);
+    </section>
+  );
+};
 
 /* ─── Marquee banner ─────────────────────────────────────────── */
 const Banner: React.FC = () => {
@@ -448,6 +506,93 @@ const Banner: React.FC = () => {
   );
 };
 
+/* ─── Token Stats ─────────────────────────────────────────────── */
+const TokenStats: React.FC = () => (
+  <section
+    style={{
+      borderTop: "1px solid var(--border)",
+      padding: "80px 24px",
+    }}
+  >
+    <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      <p
+        style={{
+          fontSize: 11,
+          fontWeight: 700,
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
+          color: "var(--primary)",
+          marginBottom: 40,
+          textAlign: "center",
+        }}
+      >
+        Token · Stats
+      </p>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: 1,
+          border: "1px solid var(--border)",
+          borderRadius: 12,
+          overflow: "hidden",
+          background: "var(--border)",
+        }}
+        className="stats-grid"
+      >
+        {[
+          { val: "100%", label: "Community-driven growth" },
+          { val: "STA", label: "Core ecosystem token" },
+          { val: "0%", label: "VC dependency" },
+          { val: "Real", label: "Product-driven value" },
+        ].map((s) => (
+          <div
+            key={s.label}
+            style={{
+              background: "var(--surface-1)",
+              padding: "44px 36px",
+              textAlign: "center",
+              transition: "background 0.2s",
+            }}
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLDivElement).style.background =
+                "var(--surface-2)")
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLDivElement).style.background =
+                "var(--surface-1)")
+            }
+          >
+            <div
+              style={{
+                fontSize: 42,
+                fontWeight: 800,
+                color: "#fff",
+                letterSpacing: "-0.03em",
+                marginBottom: 10,
+                lineHeight: 1,
+              }}
+            >
+              {s.val}
+            </div>
+            <div
+              style={{
+                fontSize: 13,
+                color: "var(--muted)",
+                lineHeight: 1.5,
+                maxWidth: 160,
+                margin: "0 auto",
+              }}
+            >
+              {s.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 /* ─── Products ───────────────────────────────────────────────── */
 const Products: React.FC = () => {
   const chatFeatures = [
@@ -467,13 +612,6 @@ const Products: React.FC = () => {
       status: "Coming soon",
     },
     {
-      icon: <RiCoinLine size={20} />,
-      name: "Stalios Exchange",
-      description:
-        "Native token swap with reduced fees for STA holders and DAO participants.",
-      status: "In development",
-    },
-    {
       icon: <RiTeamLine size={20} />,
       name: "Stalios Guilds",
       description:
@@ -485,13 +623,9 @@ const Products: React.FC = () => {
   return (
     <section
       id="products"
-      style={{
-        borderTop: "1px solid var(--border)",
-        padding: "120px 24px",
-      }}
+      style={{ borderTop: "1px solid var(--border)", padding: "120px 24px" }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        {/* Section label */}
         <p
           style={{
             fontSize: 11,
@@ -542,7 +676,6 @@ const Products: React.FC = () => {
           }}
           className="product-grid"
         >
-          {/* Left: screenshot */}
           <div style={{ background: "var(--surface-1)", overflow: "hidden" }}>
             <img
               src="/theme.jpg"
@@ -556,7 +689,6 @@ const Products: React.FC = () => {
             />
           </div>
 
-          {/* Right: description */}
           <div
             style={{
               background: "var(--surface-1)",
@@ -620,8 +752,7 @@ const Products: React.FC = () => {
             >
               The first application in the Stalios ecosystem. A token-gated chat
               platform where your STA holdings determine which rooms you can
-              access. Lorem ipsum dolor sit amet consectetur, community built
-              for builders and governors alike.
+              access — built for builders and governors alike.
             </p>
 
             <ul style={{ listStyle: "none", padding: 0, margin: "0 0 36px" }}>
@@ -649,7 +780,9 @@ const Products: React.FC = () => {
             </ul>
 
             <a
-              href="#"
+              href={CHAT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -677,11 +810,184 @@ const Products: React.FC = () => {
           </div>
         </div>
 
-        {/* Upcoming products grid */}
+        {/* Dashboard + Presale previews */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 1,
+            border: "1px solid var(--border)",
+            borderRadius: 12,
+            overflow: "hidden",
+            marginTop: 24,
+            background: "var(--border)",
+          }}
+          className="preview-grid"
+        >
+          {/* Dashboard */}
+          <div
+            style={{
+              background: "var(--surface-1)",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <div
+              style={{
+                overflow: "hidden",
+                borderBottom: "1px solid var(--border)",
+              }}
+            >
+              <img
+                src="/whatDashboardShouldLoogLike.jpg"
+                alt="STA Dashboard"
+                style={{ width: "100%", display: "block" }}
+              />
+            </div>
+            <div style={{ padding: "32px 36px", flex: 1 }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                  marginBottom: 12,
+                }}
+              >
+                <div
+                  style={{
+                    color: "var(--primary)",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <RiLineChartLine size={18} />
+                </div>
+                <span
+                  style={{
+                    fontSize: 10,
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: "var(--muted-2)",
+                    border: "1px solid var(--border)",
+                    borderRadius: 3,
+                    padding: "3px 7px",
+                  }}
+                >
+                  In Development
+                </span>
+              </div>
+              <h3
+                style={{
+                  fontSize: 20,
+                  fontWeight: 700,
+                  color: "#fff",
+                  margin: "0 0 10px",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                STA Dashboard
+              </h3>
+              <p
+                style={{
+                  fontSize: 14,
+                  color: "var(--muted)",
+                  lineHeight: 1.6,
+                  margin: 0,
+                }}
+              >
+                Track STA token metrics in real time — circulating supply, burn
+                rate, holder distribution, and ecosystem activity, all in one
+                place.
+              </p>
+            </div>
+          </div>
+
+          {/* Presale / Launchpad */}
+          <div
+            style={{
+              background: "var(--surface-1)",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <div
+              style={{
+                overflow: "hidden",
+                borderBottom: "1px solid var(--border)",
+              }}
+            >
+              <img
+                src="/whatPresaleShouldLooklike.jpg"
+                alt="Stalios Presale / Launchpad"
+                style={{ width: "100%", display: "block" }}
+              />
+            </div>
+            <div style={{ padding: "32px 36px", flex: 1 }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                  marginBottom: 12,
+                }}
+              >
+                <div
+                  style={{
+                    color: "var(--primary)",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <RiRocketLine size={18} />
+                </div>
+                <span
+                  style={{
+                    fontSize: 10,
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: "var(--muted-2)",
+                    border: "1px solid var(--border)",
+                    borderRadius: 3,
+                    padding: "3px 7px",
+                  }}
+                >
+                  Coming Soon
+                </span>
+              </div>
+              <h3
+                style={{
+                  fontSize: 20,
+                  fontWeight: 700,
+                  color: "#fff",
+                  margin: "0 0 10px",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                Presale / Launchpad
+              </h3>
+              <p
+                style={{
+                  fontSize: 14,
+                  color: "var(--muted)",
+                  lineHeight: 1.6,
+                  margin: 0,
+                }}
+              >
+                Curated project launches vetted by the Stalios DAO. STA holders
+                get early access and priority allocation on every raise that goes
+                live on the platform.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Upcoming small cards: Gov + Guilds */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
             gap: 1,
             border: "1px solid var(--border)",
             borderRadius: 12,
@@ -837,10 +1143,7 @@ const HowItWorks: React.FC = () => {
           {steps.map((s) => (
             <div
               key={s.num}
-              style={{
-                background: "var(--bg)",
-                padding: "40px 32px",
-              }}
+              style={{ background: "var(--bg)", padding: "40px 32px" }}
             >
               <div
                 style={{
@@ -918,10 +1221,7 @@ const Ecosystem: React.FC = () => {
   return (
     <section
       id="ecosystem"
-      style={{
-        borderTop: "1px solid var(--border)",
-        padding: "120px 24px",
-      }}
+      style={{ borderTop: "1px solid var(--border)", padding: "120px 24px" }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <p
@@ -1119,12 +1419,13 @@ const Community: React.FC = () => (
         >
           Stalios is not a platform you use — it's a protocol you own. Every
           product decision, fee structure, and roadmap item is subject to
-          governance. Lorem ipsum dolor sit amet consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          governance by the community that holds STA.
         </p>
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
           <a
-            href="#"
+            href={CHAT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -1175,7 +1476,6 @@ const Community: React.FC = () => (
         </div>
       </div>
 
-      {/* Right: governance stats */}
       <div
         style={{
           display: "grid",
@@ -1218,12 +1518,7 @@ const Community: React.FC = () => (
 
 /* ─── Footer ─────────────────────────────────────────────────── */
 const Footer: React.FC = () => (
-  <footer
-    style={{
-      borderTop: "1px solid var(--border)",
-      padding: "60px 24px",
-    }}
-  >
+  <footer style={{ borderTop: "1px solid var(--border)", padding: "60px 24px" }}>
     <div
       style={{
         maxWidth: 1200,
@@ -1235,7 +1530,6 @@ const Footer: React.FC = () => (
         gap: 40,
       }}
     >
-      {/* Brand */}
       <div style={{ maxWidth: 280 }}>
         <div
           style={{
@@ -1245,11 +1539,7 @@ const Footer: React.FC = () => (
             marginBottom: 16,
           }}
         >
-          <img
-            src="/logo.svg"
-            alt="Stalios"
-            style={{ height: 28, width: 28 }}
-          />
+          <img src="/logo.svg" alt="Stalios" style={{ height: 28, width: 28 }} />
           <span
             style={{
               fontSize: 16,
@@ -1274,14 +1564,14 @@ const Footer: React.FC = () => (
         </p>
       </div>
 
-      {/* Links */}
       {[
         {
           heading: "Products",
           links: [
             "Stalios Chat",
+            "STA Dashboard",
+            "Presale / Launchpad",
             "Stalios Gov",
-            "Stalios Exchange",
             "Stalios Guilds",
           ],
         },
@@ -1358,7 +1648,9 @@ const Footer: React.FC = () => (
               textDecoration: "none",
               transition: "color 0.2s",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--muted)")}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.color = "var(--muted)")
+            }
             onMouseLeave={(e) =>
               (e.currentTarget.style.color = "var(--muted-2)")
             }
@@ -1378,13 +1670,16 @@ const ResponsiveStyles: React.FC = () => (
       .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
       .hero-preview { display: none !important; }
       .product-grid { grid-template-columns: 1fr !important; }
+      .preview-grid { grid-template-columns: 1fr !important; }
       .upcoming-grid { grid-template-columns: 1fr !important; }
       .steps-grid { grid-template-columns: 1fr 1fr !important; }
       .tiers-grid { grid-template-columns: 1fr !important; }
       .community-grid { grid-template-columns: 1fr !important; }
+      .stats-grid { grid-template-columns: 1fr 1fr !important; }
     }
     @media (max-width: 600px) {
       .steps-grid { grid-template-columns: 1fr !important; }
+      .stats-grid { grid-template-columns: 1fr 1fr !important; }
       .hidden-mobile { display: none !important; }
     }
     @media (min-width: 601px) {
@@ -1401,6 +1696,7 @@ const App: React.FC = () => (
     <main>
       <Hero />
       <Banner />
+      <TokenStats />
       <Products />
       <HowItWorks />
       <Ecosystem />
