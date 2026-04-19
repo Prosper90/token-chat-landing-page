@@ -71,7 +71,11 @@ const Navbar: React.FC = () => {
             textDecoration: "none",
           }}
         >
-          <img src="/logo.svg" alt="Stalios" style={{ height: 32, width: 32 }} />
+          <img
+            src="/logo.svg"
+            alt="Stalios"
+            style={{ height: 32, width: 32 }}
+          />
           <span
             style={{
               fontSize: 18,
@@ -100,7 +104,9 @@ const Navbar: React.FC = () => {
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.color = "var(--muted)")
+              }
             >
               {l.label}
             </a>
@@ -191,7 +197,11 @@ const Hero: React.FC = () => {
 
   const tabs: { id: PreviewTab; label: string; src: string }[] = [
     { id: "chat", label: "Chat", src: "/theme.jpg" },
-    { id: "dashboard", label: "Dashboard", src: "/whatDashboardShouldLoogLike.jpg" },
+    {
+      id: "dashboard",
+      label: "Dashboard",
+      src: "/whatDashboardShouldLoogLike.jpg",
+    },
     { id: "presale", label: "Presale", src: "/whatPresaleShouldLooklike.jpg" },
   ];
 
@@ -370,7 +380,11 @@ const Hero: React.FC = () => {
                     {s.val}
                   </div>
                   <div
-                    style={{ fontSize: 12, color: "var(--muted)", marginTop: 2 }}
+                    style={{
+                      fontSize: 12,
+                      color: "var(--muted)",
+                      marginTop: 2,
+                    }}
                   >
                     {s.label}
                   </div>
@@ -976,8 +990,8 @@ const Products: React.FC = () => {
                 }}
               >
                 Curated project launches vetted by the Stalios DAO. STA holders
-                get early access and priority allocation on every raise that goes
-                live on the platform.
+                get early access and priority allocation on every raise that
+                goes live on the platform.
               </p>
             </div>
           </div>
@@ -1488,10 +1502,10 @@ const Community: React.FC = () => (
         }}
       >
         {[
-          { val: "100%", label: "On-chain governance" },
+          { val: "50%", label: "On-chain governance" },
           { val: "STA", label: "Governance token" },
-          { val: "0%", label: "VC allocation" },
-          { val: "Open", label: "Source code" },
+          { val: "20%", label: "VC allocation" },
+          { val: "30%", label: "Community Ownership" },
         ].map((s) => (
           <div
             key={s.label}
@@ -1518,7 +1532,9 @@ const Community: React.FC = () => (
 
 /* ─── Footer ─────────────────────────────────────────────────── */
 const Footer: React.FC = () => (
-  <footer style={{ borderTop: "1px solid var(--border)", padding: "60px 24px" }}>
+  <footer
+    style={{ borderTop: "1px solid var(--border)", padding: "60px 24px" }}
+  >
     <div
       style={{
         maxWidth: 1200,
@@ -1539,7 +1555,11 @@ const Footer: React.FC = () => (
             marginBottom: 16,
           }}
         >
-          <img src="/logo.svg" alt="Stalios" style={{ height: 28, width: 28 }} />
+          <img
+            src="/logo.svg"
+            alt="Stalios"
+            style={{ height: 28, width: 28 }}
+          />
           <span
             style={{
               fontSize: 16,
@@ -1576,12 +1596,12 @@ const Footer: React.FC = () => (
           ],
         },
         {
-          heading: "Governance",
-          links: ["Proposals", "Voting", "Treasury", "Forum"],
-        },
-        {
           heading: "Resources",
           links: ["Documentation", "Whitepaper", "GitHub", "Brand Kit"],
+        },
+        {
+          heading: "Community",
+          links: ["Discord", "Twitter", "Telegram", "Forum"],
         },
       ].map((col) => (
         <div key={col.heading}>
@@ -1648,9 +1668,7 @@ const Footer: React.FC = () => (
               textDecoration: "none",
               transition: "color 0.2s",
             }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.color = "var(--muted)")
-            }
+            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--muted)")}
             onMouseLeave={(e) =>
               (e.currentTarget.style.color = "var(--muted-2)")
             }
