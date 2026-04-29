@@ -130,12 +130,17 @@ const Navbar: React.FC = () => {
               borderRadius: 6,
               textDecoration: "none",
               letterSpacing: "0.01em",
-              transition: "background 0.2s",
+              transition: "background 0.2s, box-shadow 0.2s",
+              boxShadow: "0 0 18px rgba(254,144,1,0.4)",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#ffaa22")}
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.background = "var(--primary)")
-            }
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "#ffaa22";
+              e.currentTarget.style.boxShadow = "0 0 28px rgba(254,144,1,0.7)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "var(--primary)";
+              e.currentTarget.style.boxShadow = "0 0 18px rgba(254,144,1,0.4)";
+            }}
           >
             Launch App
             <RiExternalLinkLine size={13} />
@@ -209,9 +214,10 @@ const Hero: React.FC = () => {
     <section
       style={{
         background: `
-          radial-gradient(ellipse 90% 70% at 75% 35%, rgba(254,144,1,0.13) 0%, transparent 65%),
-          radial-gradient(ellipse 55% 65% at 10% 80%, rgba(240,89,0,0.09) 0%, transparent 55%),
-          radial-gradient(ellipse 40% 50% at 50% 0%, rgba(254,144,1,0.05) 0%, transparent 50%),
+          radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px) center/28px 28px,
+          radial-gradient(ellipse 90% 70% at 75% 35%, rgba(254,144,1,0.22) 0%, transparent 65%),
+          radial-gradient(ellipse 55% 65% at 10% 80%, rgba(240,89,0,0.15) 0%, transparent 55%),
+          radial-gradient(ellipse 40% 50% at 50% 0%, rgba(254,144,1,0.08) 0%, transparent 50%),
           #0a0a0a
         `,
         minHeight: "100vh",
@@ -235,7 +241,7 @@ const Hero: React.FC = () => {
               display: "inline-flex",
               alignItems: "center",
               gap: 8,
-              border: "1px solid var(--border)",
+              border: "1px solid rgba(254,144,1,0.35)",
               borderRadius: 4,
               padding: "5px 12px",
               fontSize: 12,
@@ -243,6 +249,8 @@ const Hero: React.FC = () => {
               color: "var(--primary)",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
+              background: "rgba(254,144,1,0.05)",
+              boxShadow: "0 0 16px rgba(254,144,1,0.18)",
             }}
           >
             <RiShieldLine size={13} />
@@ -276,7 +284,14 @@ const Hero: React.FC = () => {
               <br />
               Connect.
               <br />
-              <span style={{ color: "var(--primary)" }}>Own.</span>
+              <span style={{
+                display: "inline-block",
+                background: "linear-gradient(135deg, #fe9001 0%, #ffb347 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                filter: "drop-shadow(0 0 22px rgba(254,144,1,0.55))",
+              }}>Own.</span>
             </h1>
             <p
               className="animate-fade-in-up animate-delay-200"
@@ -312,14 +327,17 @@ const Hero: React.FC = () => {
                   borderRadius: 6,
                   textDecoration: "none",
                   letterSpacing: "0.01em",
-                  transition: "background 0.2s",
+                  transition: "background 0.2s, box-shadow 0.2s",
+                  boxShadow: "0 0 24px rgba(254,144,1,0.45), 0 2px 8px rgba(0,0,0,0.4)",
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.background = "#ffaa22")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.background = "var(--primary)")
-                }
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#ffaa22";
+                  e.currentTarget.style.boxShadow = "0 0 36px rgba(254,144,1,0.7), 0 2px 8px rgba(0,0,0,0.4)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "var(--primary)";
+                  e.currentTarget.style.boxShadow = "0 0 24px rgba(254,144,1,0.45), 0 2px 8px rgba(0,0,0,0.4)";
+                }}
               >
                 Launch App <RiArrowRightLine size={15} />
               </a>
@@ -373,8 +391,11 @@ const Hero: React.FC = () => {
                     style={{
                       fontSize: 22,
                       fontWeight: 700,
-                      color: "#fff",
                       letterSpacing: "-0.02em",
+                      background: "linear-gradient(135deg, #ffffff 20%, #fe9001 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
                     }}
                   >
                     {s.val}
@@ -581,10 +602,13 @@ const TokenStats: React.FC = () => (
               style={{
                 fontSize: 42,
                 fontWeight: 800,
-                color: "#fff",
                 letterSpacing: "-0.03em",
                 marginBottom: 10,
                 lineHeight: 1,
+                background: "linear-gradient(135deg, #ffffff 0%, #fe9001 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
               }}
             >
               {s.val}
@@ -739,8 +763,12 @@ const Products: React.FC = () => {
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   color: "var(--primary)",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 7,
                 }}
               >
+                <span className="live-dot" />
                 Live Now
               </span>
             </div>
@@ -810,14 +838,17 @@ const Products: React.FC = () => {
                 textDecoration: "none",
                 alignSelf: "flex-start",
                 letterSpacing: "0.01em",
-                transition: "background 0.2s",
+                transition: "background 0.2s, box-shadow 0.2s",
+                boxShadow: "0 0 20px rgba(254,144,1,0.4), 0 2px 8px rgba(0,0,0,0.4)",
               }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.background = "#ffaa22")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.background = "var(--primary)")
-              }
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#ffaa22";
+                e.currentTarget.style.boxShadow = "0 0 32px rgba(254,144,1,0.65), 0 2px 8px rgba(0,0,0,0.4)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "var(--primary)";
+                e.currentTarget.style.boxShadow = "0 0 20px rgba(254,144,1,0.4), 0 2px 8px rgba(0,0,0,0.4)";
+              }}
             >
               Open Chat <RiArrowRightLine size={14} />
             </a>
@@ -1113,7 +1144,7 @@ const HowItWorks: React.FC = () => {
       style={{
         borderTop: "1px solid var(--border)",
         padding: "120px 24px",
-        background: "var(--surface-1)",
+        background: `radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px) center/28px 28px #101010`,
       }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -1161,10 +1192,14 @@ const HowItWorks: React.FC = () => {
             >
               <div
                 style={{
-                  fontSize: 11,
+                  fontSize: 13,
                   fontWeight: 700,
-                  letterSpacing: "0.1em",
-                  color: "var(--primary)",
+                  letterSpacing: "0.12em",
+                  fontFamily: "monospace",
+                  background: "linear-gradient(135deg, #fe9001 0%, #ffb347 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
                   marginBottom: 20,
                 }}
               >
@@ -1303,7 +1338,7 @@ const Ecosystem: React.FC = () => {
               key={t.label}
               style={{
                 background: t.highlight
-                  ? "var(--surface-2)"
+                  ? "linear-gradient(180deg, rgba(254,144,1,0.08) 0%, #161616 40%)"
                   : "var(--surface-1)",
                 padding: "40px 36px",
                 position: "relative",
@@ -1317,7 +1352,8 @@ const Ecosystem: React.FC = () => {
                     left: 0,
                     right: 0,
                     height: 2,
-                    background: "var(--primary)",
+                    background: "linear-gradient(90deg, transparent, #fe9001 25%, #ffb347 75%, transparent)",
+                    boxShadow: "0 0 16px rgba(254,144,1,0.55)",
                   }}
                 />
               )}
@@ -1385,7 +1421,7 @@ const Community: React.FC = () => (
     style={{
       borderTop: "1px solid var(--border)",
       padding: "120px 24px",
-      background: "var(--surface-1)",
+      background: `radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px) center/28px 28px #101010`,
     }}
   >
     <div
@@ -1451,12 +1487,17 @@ const Community: React.FC = () => (
               padding: "11px 22px",
               borderRadius: 6,
               textDecoration: "none",
-              transition: "background 0.2s",
+              transition: "background 0.2s, box-shadow 0.2s",
+              boxShadow: "0 0 20px rgba(254,144,1,0.4), 0 2px 8px rgba(0,0,0,0.4)",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#ffaa22")}
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.background = "var(--primary)")
-            }
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "#ffaa22";
+              e.currentTarget.style.boxShadow = "0 0 32px rgba(254,144,1,0.65), 0 2px 8px rgba(0,0,0,0.4)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "var(--primary)";
+              e.currentTarget.style.boxShadow = "0 0 20px rgba(254,144,1,0.4), 0 2px 8px rgba(0,0,0,0.4)";
+            }}
           >
             Join the DAO <RiArrowRightLine size={14} />
           </a>
