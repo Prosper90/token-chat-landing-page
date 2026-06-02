@@ -21,6 +21,7 @@ import {
 const CHAT_URL = "https://chat.stalios.com/";
 const CONTRACT = "0x41874cE596ee47a21856E89Aba9055da59b165F1";
 const ETHERSCAN = `https://etherscan.io/token/${CONTRACT}`;
+const DEXSCREENER = "https://dexscreener.com/ethereum/0xa8ac4ed44849d76caf30f59382f3dd693654903a";
 
 /* ─── Helpers ────────────────────────────────────────────────── */
 const glass = (opacity = 0.028): React.CSSProperties => ({
@@ -46,15 +47,89 @@ const glowBtn: React.CSSProperties = {
   boxShadow: "0 0 24px rgba(254,144,1,0.45)",
 };
 
-/* ─── Contract address badge ─────────────────────────────────── */
-const ContractBadge: React.FC<{ full?: boolean }> = ({ full = false }) => {
+/* ─── Hero contract card ──────────────────────────────────────── */
+const HeroContract: React.FC = () => {
+  const [copied, setCopied] = useState(false);
+  const copy = () => {
+    navigator.clipboard.writeText(CONTRACT);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+  return (
+    <div style={{
+      ...glass(0.05),
+      borderRadius: 12,
+      padding: "18px 24px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: 20,
+      flexWrap: "wrap",
+      boxShadow: "0 0 0 1px rgba(254,144,1,0.1), 0 8px 40px rgba(0,0,0,0.4)",
+    }}>
+      {/* Left: label + address */}
+      <div>
+        <div style={{
+          fontSize: 9, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
+          color: "var(--primary)", marginBottom: 6, display: "flex", alignItems: "center", gap: 6,
+        }}>
+          <span style={{
+            display: "inline-block", width: 6, height: 6, borderRadius: "50%",
+            background: "#22c55e", boxShadow: "0 0 8px rgba(34,197,94,0.8)",
+          }} />
+          STA Token · Ethereum Mainnet
+        </div>
+        <div style={{
+          fontFamily: "monospace",
+          fontSize: "clamp(11px, 1.4vw, 14px)",
+          color: "#fff",
+          letterSpacing: "0.04em",
+          wordBreak: "break-all",
+        }}>
+          {CONTRACT}
+        </div>
+      </div>
+
+      {/* Right: action buttons */}
+      <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
+        <a href={DEXSCREENER} target="_blank" rel="noopener noreferrer" style={{
+          display: "inline-flex", alignItems: "center", gap: 6,
+          background: "var(--primary)", color: "#000",
+          fontSize: 11, fontWeight: 700, letterSpacing: "0.04em",
+          padding: "8px 14px", borderRadius: 6, textDecoration: "none",
+          boxShadow: "0 0 16px rgba(254,144,1,0.4)",
+          transition: "background 0.2s, box-shadow 0.2s",
+          whiteSpace: "nowrap",
+        }}
+        onMouseEnter={e => { e.currentTarget.style.background = "#ffaa22"; e.currentTarget.style.boxShadow = "0 0 24px rgba(254,144,1,0.7)"; }}
+        onMouseLeave={e => { e.currentTarget.style.background = "var(--primary)"; e.currentTarget.style.boxShadow = "0 0 16px rgba(254,144,1,0.4)"; }}>
+          DexScreener <RiExternalLinkLine size={11} />
+        </a>
+        <button onClick={copy} title="Copy contract address" style={{
+          display: "inline-flex", alignItems: "center", gap: 6,
+          background: copied ? "rgba(34,197,94,0.12)" : "rgba(255,255,255,0.06)",
+          border: `1px solid ${copied ? "rgba(34,197,94,0.3)" : "rgba(255,255,255,0.1)"}`,
+          color: copied ? "#22c55e" : "var(--muted)",
+          fontSize: 11, fontWeight: 600,
+          padding: "8px 14px", borderRadius: 6, cursor: "pointer",
+          transition: "all 0.2s",
+          whiteSpace: "nowrap",
+        }}>
+          {copied ? <><RiCheckLine size={13} /> Copied!</> : <><RiFileCopyLine size={13} /> Copy CA</>}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+/* ─── Footer contract badge ───────────────────────────────────── */
+const ContractBadge: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const copy = () => {
     navigator.clipboard.writeText(CONTRACT);
     setCopied(true);
     setTimeout(() => setCopied(false), 1800);
   };
-  const short = `${CONTRACT.slice(0, 6)}…${CONTRACT.slice(-4)}`;
   return (
     <div style={{ display: "inline-flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
       <span style={{
@@ -70,7 +145,7 @@ const ContractBadge: React.FC<{ full?: boolean }> = ({ full = false }) => {
       }}
       onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
       onMouseLeave={e => (e.currentTarget.style.color = "var(--muted)")}>
-        {full ? CONTRACT : short}
+        {CONTRACT.slice(0, 6)}…{CONTRACT.slice(-4)}
         <RiExternalLinkLine size={11} />
       </a>
       <button onClick={copy} title="Copy address" style={{
@@ -401,8 +476,8 @@ const Hero: React.FC = () => (
         </div>
 
         {/* Contract address */}
-        <div className="anim-up d-500" style={{ marginTop: 20 }}>
-          <ContractBadge />
+        <div className="anim-up d-500" style={{ marginTop: 28 }}>
+          <HeroContract />
         </div>
       </div>
 
